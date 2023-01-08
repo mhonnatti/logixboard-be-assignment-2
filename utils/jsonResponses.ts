@@ -1,4 +1,4 @@
-export function getSuccessJsonResponse(message: String = 'String', data: Object = {}) {
+export function getSuccessJsonResponse(message: String = 'Success', data: Object = {}) {
   return {
     data: data,
     message: message,
