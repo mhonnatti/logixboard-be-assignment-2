@@ -1,11 +1,13 @@
-import { Organization, Shipment } from '../db/models'
+import { Organization, Shipment, ShipmentWeight } from '../db/models'
 import { getSuccessJsonResponse, getErrorJsonResponse } from '../utils/jsonResponses'
 
 export const shipment = async (req: any, res: any) => {
   try{
     let data = removeNulls(req.body);
     let shipItem = new Shipment(data);
+    let shipmentWeight = new ShipmentWeight(shipItem.serialize("WeightAggregator"));
     shipItem.save();
+    shipmentWeight.save();
     res.json(getSuccessJsonResponse());
   } catch (err) {
     console.error(err);
